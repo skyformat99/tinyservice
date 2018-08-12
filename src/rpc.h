@@ -1,3 +1,6 @@
+#ifndef __RPC_H__
+#define __RPC_H__
+
 #include <vector>
 #include <thrift/stdcxx.h>
 #include <thrift/TProcessor.h>
@@ -32,7 +35,7 @@ class ProcessorFactoryImpl : public ProcessorFactory
     std::string mName;
 };
 
-typedef std::vector<ProcessorFactory *> FactoryList;
+typedef std::vector<ProcessorFactory *> ProcessorFactoryList;
 class ProcessorFactoryRegistry
 {
   public:
@@ -48,7 +51,7 @@ class ProcessorFactoryRegistry
     void all(void (*doit)(ProcessorFactory *f, void *ctx), void *ctx);
 
   protected:
-    FactoryList mFactories;
+    ProcessorFactoryList mFactories;
     static bool mbValid;
 };
 
@@ -82,3 +85,5 @@ void rpcLoop(int port, int workerCount, int pendingTaskCountMax);
 
 #define PROCESSOR_REGISTER(Name, Processor, Handler)                    \
     static rpc::AutoRegisterProcessor<Processor, Handler> _autoRegisterRegistry_##Handler(Name)
+
+#endif // __RPC_H__

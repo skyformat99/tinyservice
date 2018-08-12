@@ -65,7 +65,7 @@ void ProcessorFactoryRegistry::registerFactory(ProcessorFactory *factory)
 
 void ProcessorFactoryRegistry::unregisterFactory(ProcessorFactory *factory)
 {
-    FactoryList::iterator it = mFactories.begin();
+    ProcessorFactoryList::iterator it = mFactories.begin();
     while (it != mFactories.end())
     {
         if ((*it) == factory)
@@ -81,7 +81,7 @@ void ProcessorFactoryRegistry::unregisterFactory(ProcessorFactory *factory)
 
 void ProcessorFactoryRegistry::all(void (*doit)(ProcessorFactory *f, void *ctx), void *ctx)
 {
-    FactoryList::iterator it = mFactories.begin();
+    ProcessorFactoryList::iterator it = mFactories.begin();
     for (; it != mFactories.end(); it++)
     {
         doit(*it, ctx);

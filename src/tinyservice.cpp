@@ -4,6 +4,9 @@
 #include <getopt.h>
 
 #include "rpc.h"
+#include "service.h"
+
+using namespace rpc;
 
 void useage()
 {
